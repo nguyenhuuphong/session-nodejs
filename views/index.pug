@@ -1,0 +1,36 @@
+extends ./com.pug  
+block content
+
+	h1(class="ml-4", style='padding-bottom: 2rem;') Thư viện sách
+	div(class=" ml-4 btn alert-success")
+		a(href="/books/create", class="ml-4") thêm sách mới vào kho
+	br
+	div(class=" ml-4 btn alert-success")
+		a(href="/user", class="ml-4") Người tài khoản thuê sách
+	form(class="ml-4", action="/books", method="GET", style='width: 18rem;' )
+		input(type="text", name="q")
+		button search
+		hr(style='width: 100rem;')
+	nav.ml-4(aria-label='...')
+		ul.pagination.pagination-sm
+			li.page-item.active(aria-current='page')
+				a.page-link 1
+			li.page-item
+				a.page-link(href='/books?page=2') 2
+			li.page-item
+				a.page-link(href='/books?page=3') 3
+			li.page-item
+				a.page-link(href='/books?page=4') 4
+			li.page-item
+				a.page-link(href='/books?page=5') 5							
+	each book in todo		
+		.card(style='width: 18rem; float: left;' ,class="ml-4 mb-2")
+			img.card-img-top(src= book.coverUrl, style="height: 160px;  boder-shadow: 0 0 4 black;") 
+			.card.d-flex-4(style="bd-none")
+				.card-body.ml-6(style="height=150px")
+					h5.card-title= book.title
+					h6.card-subtitle.mb-2.text-muted= book.des
+					a.card-link(href='/books/'+ book.id + "/delete") Xóa
+					a.card-link(href="/books/" + book.id + "/update") Cập nhật
+				a.card-link.btn.btn-success(href="/cart/add/" + book.id, class="m-0 mt-1") Thêm vào giỏ
+

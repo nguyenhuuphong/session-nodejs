@@ -1,0 +1,38 @@
+extends ./com.pug  
+block content
+
+    .row.justify-content-md-center
+        .col-md-6
+            h1 CREATE NEW USER
+
+            if errors
+                each error in errors
+                    .alert.alert-danger= error
+
+            form.ml-4(action="/user/add", method="POST", enctype="multipart/form-data")
+                .form-group
+                    label(for="name") User Name
+                    input#name.form-control(type="text", name="name", value= values ? values.name : "")
+                    
+                .form-group
+                    label(for="age") age
+                    input#age.form-control(type="text", name="age", value= values ? values.phone : "")
+                
+                .form-group
+                    label(for="email") Email
+                    input#email.form-control(type="text", name="email", value= values ? values.email: "")
+                
+                .form-group
+                    label(for="password") Password
+                    input#password.form-control(type="password", name="password", value= values ? values.password : "")
+
+                .form-group
+                    label(for="avatar") Avatar
+                    input#avatar.form-control-file(type="file", name="avatar")
+
+                .form-group     
+                    lable Role
+                    select.form-control(name="isAdmin")
+                        option(value="false" ) User
+                        option(value="true" check="") Admin
+                button.btn.btn-success.mt-3 Create                 

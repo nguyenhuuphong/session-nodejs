@@ -1,0 +1,15 @@
+extends ./com.pug  
+block content
+	h1 Your Cart
+		table.table.table-dark
+			tr
+				th id
+				th Tittle
+				th SL
+			each item in cart
+				tr
+					td=item.id
+					td=item.title 
+					td=item.quantity
+		a.btn.btn-success(href="/books") Back
+        

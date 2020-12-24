@@ -1,0 +1,16 @@
+extends ./com.pug  
+block content
+	h1 Tạo tên sách mới trong thư viện
+	if errors
+		each error in errors
+			.alert.alert-danger= error
+	h1 
+	form(class="ml-4" action="/books/create", method="POST", enctype="multipart/form-data")
+		.form-group
+			input.from-control(type="text", name="title", placeholder="nhập title", value= values ? values.title : '' )
+		.form-group
+			input.from-control(type="text", name="des", placeholder="nhập description", value= values ? values.des : '' )
+		.form-group
+			label(for="coverUrl") Cover
+			input#coveUrl.form-control-file(type="file", name="coverUrl")
+		button.btn.btn-success add book

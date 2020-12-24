@@ -1,0 +1,29 @@
+extends ./com.pug  
+block content
+	h1.ml-4 Danh sách người thuê sách
+	a.ml-4(href="/user/add") thêm người mới
+	br
+	br
+	form.ml-4(action="/user/search", method="GET")
+		input(type="text", name="q")
+		button(type="submit") Search
+	table.table
+		tr
+			th Avatar
+			th Name
+			th Age
+			th Email
+			th Action	
+		each user in users
+			tr
+				td
+					img(src= user.avatar, width="50px", style="border-radius:10px")
+				td= user.name
+				td= user.age
+				td= user.email
+				td
+					a.btn.btn-primary(href="/user/" + user.id + "/delete") Delete
+				td
+					a.btn.btn-primary(href="/user/" + user.id + "/update") Update
+				td
+					a.btn.btn-primary(href="/user/" + user.id ) view				
